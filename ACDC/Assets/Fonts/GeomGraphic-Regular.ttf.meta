@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: a52e32680f279d440883662b465c1d1f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Geom Graphic
+  fontNames:
+  - Geom Graphic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 10959a910a6c3bc42875fa575bfba6e5, type: 3}
+  - {fileID: 12800000, guid: 2a6413137ebf5b94089d52dedfa9700b, type: 3}
+  - {fileID: 12800000, guid: 1d6c60b80cf7ed448bedf18e4432d29e, type: 3}
+  - {fileID: 12800000, guid: 1bcb5e0ea9495b94fbc6ee28ff9a44d1, type: 3}
+  - {fileID: 12800000, guid: 4d6e6cce994a2804f9f22b55a3c80dff, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
