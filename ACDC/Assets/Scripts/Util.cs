@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Util : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static void SetAlpha() 
+	{
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	}
+
+	public static GameObject CreateGameObject(string path, float x=0, float y=0, float z=0)
+	{
+		GameObject gameObject = Instantiate(Resources.Load<GameObject>("Prefabs/" + path), new Vector3(x, y, z), Quaternion.identity);
+		return gameObject;
+	}
 }
