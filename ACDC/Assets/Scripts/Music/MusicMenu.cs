@@ -11,7 +11,7 @@ public class MusicMenu : MonoBehaviour
 	
 	GameObject mask;
 	
-	List<GameObject> _albumGroups = new List<GameObject>();
+	public List<GameObject> albumGroups = new List<GameObject>();
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class MusicMenu : MonoBehaviour
 
 			group.GetComponent<AlbumGroup>().Create(i);
 			
-			_albumGroups.Add(group);
+			albumGroups.Add(group);
 		}
 
 		mask = Util.CreateGameObject("Music/ClippingPlane");
@@ -52,12 +52,12 @@ public class MusicMenu : MonoBehaviour
 
 		for (int i = 0; i < 10; i++)
 		{
-			GameObject group = _albumGroups[i];
+			GameObject group = albumGroups[i];
 			GameObject header = group.GetComponent<AlbumGroup>().header;
 			group.transform.DOLocalMoveX((i-3)*DISTANCE_X, 2f)
 			.SetEase(Ease.OutCubic)
 			.OnUpdate(() => OnUpdateTween(group, header))
-			.OnComplete(() => _albumGroups[3].GetComponent<AlbumGroup>().Open());
+			.OnComplete(() => albumGroups[3].GetComponent<AlbumGroup>().Open());
 		}
 	}
 

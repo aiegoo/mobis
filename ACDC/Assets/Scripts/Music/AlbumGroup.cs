@@ -68,7 +68,7 @@ public class AlbumGroup : MonoBehaviour
 						albums[1].transform.DOLocalMoveZ(0, 0.8f).SetEase(Ease.InOutCubic);
 						albums[2].transform.DOLocalMoveZ(DISTANCE_Z, 0.8f).SetEase(Ease.InOutCubic);
 
-						albums[3].transform.DOLocalMoveY(0, 0.8f).SetEase(Ease.InOutCubic).From(-2);
+						albums[3].transform.DOLocalMoveY(0, 0.8f).SetEase(Ease.InOutCubic).From(-2).OnComplete(()=>{Main.isOpened=true;});
 					});
 				}
 				else
@@ -83,6 +83,16 @@ public class AlbumGroup : MonoBehaviour
 
 	public void Close()
 	{
+		albums[0].transform.DOLocalRotate(new Vector3(0, 90, 0), 0.8f).SetEase(Ease.InOutCubic);
 
+		albums[1].transform.DOLocalMoveZ(-DISTANCE_Z, 0.8f).SetEase(Ease.InOutCubic);
+		albums[2].transform.DOLocalMoveZ(-DISTANCE_Z, 1.0f).SetEase(Ease.InOutCubic);
+		albums[3].transform.DOLocalMoveZ(-DISTANCE_Z, 1.2f).SetEase(Ease.InOutCubic);
+
+		albums[1].transform.DOLocalRotate(new Vector3(0, 90, 0), 0.8f).SetDelay(0.2f).SetEase(Ease.InOutCubic);
+		albums[2].transform.DOLocalRotate(new Vector3(0, 90, 0), 0.8f).SetDelay(0.4f).SetEase(Ease.InOutCubic);
+		albums[3].transform.DOLocalRotate(new Vector3(0, 90, 0), 0.8f).SetDelay(0.6f).SetEase(Ease.InOutCubic);
+
+		header.transform.DOLocalMoveZ(0, 1.2f).SetEase(Ease.InOutCubic);
 	}
 }

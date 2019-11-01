@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+	public static bool isOpened = false;
     // Start is called before the first frame update
 	public GameObject musicView;
 	bool isFirst = true;
@@ -22,5 +23,14 @@ public class Main : MonoBehaviour
             musicView.GetComponent<MusicView>().musicMenu.GetComponent<MusicMenu>().Display();
 			isFirst = false;
         }
+
+		//테스트용
+		if(Input.GetMouseButtonUp(0))
+		{
+			if(Main.isOpened)
+			{
+				musicView.GetComponent<MusicView>().musicMenu.GetComponent<MusicMenu>().albumGroups[3].GetComponent<AlbumGroup>().Close();
+			}
+		}
     }
 }
