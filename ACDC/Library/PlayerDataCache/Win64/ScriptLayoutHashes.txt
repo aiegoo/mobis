@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-D:/tony/repos/mobis/ACDC/Build/ACDC.exe
+C:/Users/Joe/Desktop/work/ACDC/develop/ACDC/Build/ACDC.exe
 SceneListBegin?
 Assets/Scenes/MainScene.unity
 SceneListEnd?
