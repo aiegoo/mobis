@@ -10,7 +10,7 @@ public class Album : DisplayObject
 	public int idx;
 	public int posIdx;
 
-	
+
 
 	public void SetTexture(string path)
 	{
@@ -29,7 +29,7 @@ public class Album : DisplayObject
 
 	void OnMouseUp()
 	{
-		if(MusicMenu.isMoving) return;
+		if(MusicMenu.isMoving || y<0) return;
 
 		AlbumGroup group = parent as AlbumGroup;
 		group.Slide(idx);

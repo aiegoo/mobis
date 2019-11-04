@@ -15,10 +15,10 @@ public class AlbumHeader : DisplayObject
 			renderers[i].material.SetVector("_PlanePosition", new Vector3(0, 1.42f, 0));
 		}
 	}
-	
+
 	void OnMouseUp()
 	{
-		if(MusicMenu.isMoving) return;
+		if(MusicMenu.isMoving || y<-1) return;
 		
 		AlbumGroup group = parent as AlbumGroup;
 		MusicMenu.instance.UpdateMenu(group.idx);

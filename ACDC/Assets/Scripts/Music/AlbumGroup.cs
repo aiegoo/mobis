@@ -90,7 +90,6 @@ public class AlbumGroup : DisplayObject
 
 						albums[3].TweenY(0, 0.4f).OnComplete(() => { 
 							MusicMenu.isMoving = false;
-							MusicMenu.isOpened = true;
 						});
 
 						DOVirtual.DelayedCall(0.2f, ()=>MusicMenu.instance.DisplayTitle(true));

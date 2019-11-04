@@ -9,7 +9,6 @@ public class MusicMenu : DisplayObject
 	public static MusicMenu instance;
 
 	public static bool isMoving = false;
-	public static bool isOpened = false;
 
 	const float DISTANCE_X = 1.12f;
 	const float DISTANCE_Z = 0.7f;
