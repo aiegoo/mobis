@@ -15,7 +15,7 @@ public class MotionCurve : DisplayObject
 		get {
 			if(_instance == null)
 			{
-				_instance = DisplayObject.Create<MotionCurve>(true);
+				_instance = Create<MotionCurve>(true);
 				_instance.name = "motionCurve";				
 			}
 			return _instance;
