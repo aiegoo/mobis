@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8298089144672590603}
   - component: {fileID: 4178289218446209989}
   m_Layer: 0
-  m_Name: Left
+  m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 361203083960727395}
-  - component: {fileID: 114455737742339094}
+  - component: {fileID: 65429497909889224}
   m_Layer: 0
   m_Name: AlbumHeader
   m_TagString: Untagged
@@ -133,25 +133,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114455737742339094
-MonoBehaviour:
+--- !u!65 &65429497909889224
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361203083960727392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a99bfc508671c42a113953994d9254, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ac:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  t: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.051344924}
+  m_Center: {x: 0.5, y: 0.5, z: 0.00026046112}
 --- !u!1 &361203084651475182
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +159,7 @@ GameObject:
   - component: {fileID: 361203084651475168}
   - component: {fileID: 361203084651475169}
   m_Layer: 0
-  m_Name: Back
+  m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +250,7 @@ GameObject:
   - component: {fileID: 6510167621343507452}
   - component: {fileID: 479957836028712196}
   m_Layer: 0
-  m_Name: GenreShadow
+  m_Name: genreShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +287,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45d1c86d770766b43b9f3b6d44ac4cd5, type: 2}
+  - {fileID: 2100000, guid: 4092f75286469c547b019ceac26e621b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -347,7 +341,7 @@ GameObject:
   - component: {fileID: 752118880297551136}
   - component: {fileID: 721197434310674950}
   m_Layer: 0
-  m_Name: TitleShadow
+  m_Name: titleShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,7 +378,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45d1c86d770766b43b9f3b6d44ac4cd5, type: 2}
+  - {fileID: 2100000, guid: 4092f75286469c547b019ceac26e621b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -441,7 +435,7 @@ GameObject:
   - component: {fileID: 1885662900174029848}
   - component: {fileID: 2343243428045074542}
   m_Layer: 0
-  m_Name: Right
+  m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -532,7 +526,7 @@ GameObject:
   - component: {fileID: 797664373636080840}
   - component: {fileID: 7970661171657456187}
   m_Layer: 0
-  m_Name: Genre
+  m_Name: genre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,7 +618,7 @@ GameObject:
   - component: {fileID: 4905728526183689124}
   - component: {fileID: 5505293893621192197}
   m_Layer: 0
-  m_Name: Front
+  m_Name: front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,7 +710,7 @@ GameObject:
   - component: {fileID: 256799358085091806}
   - component: {fileID: 7800908205511407106}
   m_Layer: 0
-  m_Name: Bottom
+  m_Name: bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -808,7 +802,7 @@ GameObject:
   - component: {fileID: 4602865501529704903}
   - component: {fileID: 9076686716430589159}
   m_Layer: 0
-  m_Name: Top
+  m_Name: top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,7 +893,7 @@ GameObject:
   - component: {fileID: 9088447794029441032}
   - component: {fileID: 7993831616845620736}
   m_Layer: 0
-  m_Name: Title
+  m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -975,8 +969,8 @@ TextMesh:
   m_TabSize: 4
   m_FontSize: 21
   m_FontStyle: 0
-  m_RichText: 1
+  m_RichText: 0
   m_Font: {fileID: 12800000, guid: 10959a910a6c3bc42875fa575bfba6e5, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 3238002687
+    rgba: 4294967295

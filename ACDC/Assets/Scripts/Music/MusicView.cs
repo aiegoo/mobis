@@ -1,23 +1,19 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class MusicView : MonoBehaviour
+public class MusicView : DisplayObject
 {
-    public GameObject musicMenu;
-    void Start()
-    {
+	public MusicMenu musicMenu;
+
+	public void Start()
+	{
 		transform.localPosition = new Vector3(0, 1.42f, 0.15f);
-        musicMenu = Util.CreateGameObject("Music/MusicMenu");
+        musicMenu = Create<MusicMenu>();
 		musicMenu.name = "musicMenu";
 		
-		musicMenu.transform.parent = transform;
-		musicMenu.transform.localPosition = new Vector3(0, 0, 0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		AddChild(musicMenu);
+		musicMenu.ResetPosition();
+	}
 }

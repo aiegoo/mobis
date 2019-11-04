@@ -1,36 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
-public class Main : MonoBehaviour
+public class Main : DisplayObject
 {
 	public static bool isOpened = false;
     // Start is called before the first frame update
-	public GameObject musicView;
+	public MusicView musicView;
 	bool isFirst = true;
+
+	void Awake()
+	{
+		string json = File.ReadAllText(Application.streamingAssetsPath + "/playlist.json");
+		PlayInfo.list = JsonUtility.FromJson<PlayInfo>(json).items;
+	}
+
     void Start()
     {
-        musicView = new GameObject("musicView");
-		musicView.AddComponent<MusicView>();
-		musicView.transform.parent = transform;
+		Global g = Global.instance;
+
+        musicView = Create<MusicView>();
+		musicView.name = "musicView";
+		AddChild(musicView);
+		
     }
 
     // Update is called once per frame
     void Update()
     {
+		// transform.localScale = transform.localScale;
+
         if(Input.GetKeyDown(KeyCode.Space) && isFirst)
         {
-            musicView.GetComponent<MusicView>().musicMenu.GetComponent<MusicMenu>().Display();
+            musicView.musicMenu.Appear();
 			isFirst = false;
         }
-
-		//테스트용
-		if(Input.GetMouseButtonUp(0))
-		{
-			if(Main.isOpened)
-			{
-				musicView.GetComponent<MusicView>().musicMenu.GetComponent<MusicMenu>().albumGroups[3].GetComponent<AlbumGroup>().Close();
-			}
-		}
     }
 }
