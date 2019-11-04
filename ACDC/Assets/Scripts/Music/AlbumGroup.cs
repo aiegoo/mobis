@@ -107,6 +107,8 @@ public class AlbumGroup : DisplayObject
 
 	public void Slide(int idx)
 	{
+		if(idx == focusIdx) return;
+		
 		MusicMenu.isMoving = true;
 		iter.index = focusIdx;
 

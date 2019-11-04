@@ -128,6 +128,8 @@ public class MusicMenu : DisplayObject
 
 	public void UpdateMenu(int idx)
 	{
+		if(idx == focusIdx) return;
+		
 		AlbumGroup group = albumGroups[focusIdx];
 		DisplayTitle(false);
 		DOVirtual.DelayedCall(0.0f, () => group.Close(idx));
