@@ -31,8 +31,6 @@ public class Album : DisplayObject
 	{
 		if(MusicMenu.isMoving || y<0) return;
 
-		MusicPlayer.instance.Stop();
-		
 		AlbumGroup group = parent as AlbumGroup;
 		group.Slide(idx);
 	}

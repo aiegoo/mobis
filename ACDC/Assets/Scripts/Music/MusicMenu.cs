@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -131,6 +132,8 @@ public class MusicMenu : DisplayObject
 		if (idx == focusIdx) return;
 
 		isMoving = true;
+		MusicPlayer.instance.Stop();
+		
 		AlbumGroup group = albumGroups[focusIdx];
 		DisplayTitle(false);
 		group.Close(idx);
@@ -140,7 +143,7 @@ public class MusicMenu : DisplayObject
 	{
 		float value = willShow ? 1 : 0;
 		Ease ease = willShow ? Ease.Linear : Ease.OutQuad;
-		int rnd = Random.Range(0, 5);
+		
 		for (int i = 0; i < 4; i++)
 		{
 			float delay = willShow ? i * 0.1f : 0f;
@@ -163,17 +166,22 @@ public class MusicMenu : DisplayObject
 				float a3 = m3.color.a;
 				DOTween.To(() => a3, v => a3 = v, value, 0.5f).SetDelay(delay).SetEase(ease)
 				.OnUpdate(() => m3.color = new Color(1, 1, 1, a3));
+
+				TextMesh m4 = GameObject.Find("genre").GetComponent<TextMesh>();
+				float a4 = m4.color.a;
+				DOTween.To(() => a4, v => a4 = v, value, 0.5f).SetDelay(delay).SetEase(ease)
+				.OnUpdate(() => m4.color = new Color(1, 1, 1, a4));
 			}
 
 			if (willShow)
 			{
 
-				m1.text = PlayInfo.list[focusIdx%2].musiclist[i].song;
-				m2.text = PlayInfo.list[focusIdx%2].musiclist[i].singer;
+				m1.text = PlayInfo.list[focusIdx%2].musiclist[i].song.ToUpper();
+				m2.text = PlayInfo.list[focusIdx%2].musiclist[i].singer.ToUpper();
 				if (i == 0)
 				{
 					TextMesh m3 = GameObject.Find("album").GetComponent<TextMesh>();
-					m3.text = PlayInfo.list[rnd].musiclist[i].album;
+					m3.text = PlayInfo.list[focusIdx%5].musiclist[i].album.ToUpper() + "\r\n" + PlayInfo.list[focusIdx%5].musiclist[i].genre.ToUpper();
 				}
 			}
 		}
@@ -182,8 +190,7 @@ public class MusicMenu : DisplayObject
 		{
 			DOVirtual.DelayedCall(0.8f,() => isMoving = false);
 
-			int id = focusIdx % 5;
-			MusicPlayer.instance.Play(PlayInfo.list[id].musiclist[0].id-1);
+			MusicPlayer.instance.Play(PlayInfo.list[focusIdx % 5].musiclist[0].id-1);
 			
 		}
 			

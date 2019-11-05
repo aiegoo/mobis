@@ -21,8 +21,6 @@ public class AlbumHeader : DisplayObject
 		
 		if(MusicMenu.isMoving || y<-1) return;
 		
-		MusicPlayer.instance.Stop();
-		
 		AlbumGroup group = parent as AlbumGroup;
 		MusicMenu.instance.UpdateMenu(group.idx);
 	}

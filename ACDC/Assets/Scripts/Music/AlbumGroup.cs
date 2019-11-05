@@ -32,7 +32,7 @@ public class AlbumGroup : DisplayObject
 			album.name = "album" + i;
 			album.idx = i;
 			album.posIdx = i <= 3 ? i : 4;
-			album.SetTexture("album_0" + (i % 4));
+			album.SetTexture("album_0" + (PlayInfo.list[idx%5].musiclist[i%4].id-1));
 
 			album.transform.parent = transform;
 			album.transform.localPosition = new Vector3(0, -1f, DISTANCE_Z * ((i < 3) ? i : 2));
@@ -57,12 +57,13 @@ public class AlbumGroup : DisplayObject
 			album.transform.localScale = new Vector3(0.84f, 0.93f, 0.84f);
 		}
 
+		focusIdx = 0;
 		iter.index = 0;
 	}
 
 	public void Open()
 	{
-		Reset();
+		
 		MusicMenu.isMoving = true;
 		// header.transform.DOLocalMoveY(0, 0);
 		header.y = 0;
@@ -108,6 +109,8 @@ public class AlbumGroup : DisplayObject
 		if (idx == focusIdx) return;
 
 		MusicMenu.isMoving = true;
+		MusicPlayer.instance.Stop();
+
 		iter.index = focusIdx;
 
 		List<Album> list = new List<Album>();
@@ -222,9 +225,6 @@ public class AlbumGroup : DisplayObject
 			int id = focusIdx % 4;
 			MusicPlayer.instance.Play(PlayInfo.list[groupIdx].musiclist[id].id - 1);
 
-			Debug.Log(focusIdx);
-
-
 		});
 
 		focusIdx = idx;
@@ -276,6 +276,9 @@ public class AlbumGroup : DisplayObject
 
 		header.TweenZ(DISTANCE_Z * 0, 1.0f);
 
-		DOVirtual.DelayedCall(0.9f, () => MusicMenu.instance.Slide(targetIdx));
+		DOVirtual.DelayedCall(0.9f, () => {
+			MusicMenu.instance.Slide(targetIdx);
+			Reset();
+		});
 	}
 }
