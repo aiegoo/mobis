@@ -9,16 +9,10 @@ public class MotionCurve : DisplayObject
 	public AnimationCurve albumHeaderCurve;
 	public AnimationCurve defaultCurve;
 
-	private static MotionCurve _instance;
-	public static MotionCurve instance
+	public static MotionCurve instance;
+	public static void Init()
 	{
-		get {
-			if(_instance == null)
-			{
-				_instance = Create<MotionCurve>(true);
-				_instance.name = "motionCurve";				
-			}
-			return _instance;
-		}
+		instance = Create<MotionCurve>(true);
+		instance.name = "motionCurve";	
 	}
 }

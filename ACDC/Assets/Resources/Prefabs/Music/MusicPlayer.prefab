@@ -50,8 +50,7 @@ MonoBehaviour:
   _alpha: 1
   parent: {fileID: 0}
   audioClips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  myAudio: {fileID: 0}
+  - {fileID: 8300000, guid: 14949fc6bb0bd1b4fb3c4b69941cf294, type: 3}
+  - {fileID: 8300000, guid: d8a57a9a8d4d8c04ea530901161d1bd7, type: 3}
+  - {fileID: 8300000, guid: 825b1734ec03ced4d83f149aa285f971, type: 3}
+  - {fileID: 8300000, guid: 68fbd104fda4ad340aa6deb42756110c, type: 3}

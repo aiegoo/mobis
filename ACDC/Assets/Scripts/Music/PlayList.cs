@@ -7,6 +7,7 @@ using DG.Tweening;
 [System.Serializable]
 public class Music
 {
+	public int id;
 	public string singer;
 	public string song;
 	public string album;

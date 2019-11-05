@@ -14,6 +14,9 @@ public class Main : DisplayObject
 	{
 		string json = File.ReadAllText(Application.streamingAssetsPath + "/playlist.json");
 		PlayInfo.list = JsonUtility.FromJson<PlayInfo>(json).items;
+
+		MotionCurve.Init();
+		MusicPlayer.Init();
 	}
 
     void Start()

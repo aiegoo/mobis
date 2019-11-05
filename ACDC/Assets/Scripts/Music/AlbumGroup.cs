@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class AlbumGroup : DisplayObject
 {
-	
+
 
 	const float DISTANCE_Z = 0.7f;
 	public int idx;
@@ -88,11 +88,9 @@ public class AlbumGroup : DisplayObject
 						albums[1].TweenZ(0, 0.6f);
 						albums[2].TweenZ(DISTANCE_Z, 0.6f);
 
-						albums[3].TweenY(0, 0.4f).OnComplete(() => { 
-							MusicMenu.isMoving = false;
-						});
-
-						DOVirtual.DelayedCall(0.2f, ()=>MusicMenu.instance.DisplayTitle(true));
+						albums[3].TweenY(0, 0.4f);
+						Debug.Log(albumIndex);
+						DOVirtual.DelayedCall(0.2f, () => MusicMenu.instance.DisplayTitle(true));
 					});
 				}
 				else
@@ -107,8 +105,8 @@ public class AlbumGroup : DisplayObject
 
 	public void Slide(int idx)
 	{
-		if(idx == focusIdx) return;
-		
+		if (idx == focusIdx) return;
+
 		MusicMenu.isMoving = true;
 		iter.index = focusIdx;
 
@@ -120,11 +118,11 @@ public class AlbumGroup : DisplayObject
 		}
 
 		iter.index = focusIdx;
-		
+
 		if (albums[idx].posIdx == 1)
 		{
 			iter.item.TweenRotaionY(135, 0.4f);
-			iter.item.TweenAlpha(0f, 0.4f).OnComplete(()=>OnHideAlbum(list[0]));
+			iter.item.TweenAlpha(0f, 0.4f).OnComplete(() => OnHideAlbum(list[0]));
 			iter.item.posIdx = 4;
 
 			iter.Next();
@@ -144,18 +142,17 @@ public class AlbumGroup : DisplayObject
 			iter.item.TweenY(0, 0.4f).SetDelay(0.0f);
 			iter.item.posIdx = 3;
 
-			DOVirtual.DelayedCall(0.8f, ()=>{MusicMenu.isMoving=false;});
 		}
 		else if (albums[idx].posIdx == 2)
 		{
 			iter.item.TweenRotaionY(135, 0.4f);
-			iter.item.TweenAlpha(0f, 0.4f).OnComplete(()=>OnHideAlbum(list[0]));
+			iter.item.TweenAlpha(0f, 0.4f).OnComplete(() => OnHideAlbum(list[0]));
 			iter.item.posIdx = 4;
 
 			iter.Next();
 			iter.item.TweenZ(DISTANCE_Z * -1, 0.4f);
 			iter.item.TweenRotaionY(135, 0.4f).SetDelay(0.2f);
-			iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.2f).OnComplete(()=>OnHideAlbum(list[1]));
+			iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.2f).OnComplete(() => OnHideAlbum(list[1]));
 			iter.item.posIdx = 4;
 
 			iter.Next();
@@ -176,24 +173,23 @@ public class AlbumGroup : DisplayObject
 			iter.item.TweenY(0, 0.4f).SetDelay(0.2f);
 			iter.item.posIdx = 3;
 
-			DOVirtual.DelayedCall(0.8f, ()=>{MusicMenu.isMoving=false;});
 		}
 		else
 		{
 			iter.item.TweenRotaionY(135, 0.4f);
-			iter.item.TweenAlpha(0f, 0.4f).OnComplete(()=>OnHideAlbum(list[0]));
+			iter.item.TweenAlpha(0f, 0.4f).OnComplete(() => OnHideAlbum(list[0]));
 			iter.item.posIdx = 4;
 
 			iter.Next();
 			iter.item.TweenZ(DISTANCE_Z * -1, 0.4f);
 			iter.item.TweenRotaionY(135, 0.4f).SetDelay(0.2f);
-			iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.2f).OnComplete(()=>OnHideAlbum(list[1]));
+			iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.2f).OnComplete(() => OnHideAlbum(list[1]));
 			iter.item.posIdx = 4;
 
 			iter.Next();
 			iter.item.TweenZ(DISTANCE_Z * -1, 0.4f);
 			iter.item.TweenRotaionY(135, 0.4f).SetDelay(0.2f);
-			iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.2f).OnComplete(()=>OnHideAlbum(list[2]));
+			iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.2f).OnComplete(() => OnHideAlbum(list[2]));
 			iter.item.posIdx = 4;
 
 			iter.Next();
@@ -215,15 +211,28 @@ public class AlbumGroup : DisplayObject
 			iter.item.TweenY(0, 0.4f).SetDelay(0.3f);
 			iter.item.posIdx = 3;
 
-			DOVirtual.DelayedCall(0.8f, ()=>{MusicMenu.isMoving=false;});
+
 		}
+		DOVirtual.DelayedCall(0.8f, () =>
+		{
+			MusicMenu.isMoving = false;
+
+			int groupIdx = MusicMenu.instance.focusIdx % 5;
+			Album album = albums[focusIdx];
+			int id = focusIdx % 4;
+			MusicPlayer.instance.Play(PlayInfo.list[groupIdx].musiclist[id].id - 1);
+
+			Debug.Log(focusIdx);
+
+
+		});
 
 		focusIdx = idx;
 	}
 
 	public void OnHideAlbum(Album album)
 	{
-		
+
 		album.transform.localRotation = Quaternion.identity;
 		album.transform.localPosition = new Vector3(0, -1, DISTANCE_Z * 2);
 		album.alpha = 1;
@@ -244,29 +253,29 @@ public class AlbumGroup : DisplayObject
 		iter.index = focusIdx;
 
 		iter.item.TweenRotaionY(135, 0.4f);
-		iter.item.TweenAlpha(0f, 0.4f).OnComplete(()=>OnHideAlbum(list[0]));
+		iter.item.TweenAlpha(0f, 0.4f).OnComplete(() => OnHideAlbum(list[0]));
 		iter.item.posIdx = 4;
 
 		iter.Next();
 		iter.item.TweenZ(DISTANCE_Z * -1, 0.2f);
 		iter.item.TweenRotaionY(135, 0.4f).SetDelay(0.1f);
-		iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.1f).OnComplete(()=>OnHideAlbum(list[1]));
+		iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.1f).OnComplete(() => OnHideAlbum(list[1]));
 		iter.item.posIdx = 4;
 
 		iter.Next();
 		iter.item.TweenZ(DISTANCE_Z * -1, 0.4f);
 		iter.item.TweenRotaionY(135, 0.4f).SetDelay(0.2f);
-		iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.2f).OnComplete(()=>OnHideAlbum(list[2]));
+		iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.2f).OnComplete(() => OnHideAlbum(list[2]));
 		iter.item.posIdx = 4;
 
 		iter.Next();
 		iter.item.TweenZ(DISTANCE_Z * -1, 0.8f);
 		iter.item.TweenRotaionY(135, 0.4f).SetDelay(0.4f);
-		iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.4f).OnComplete(()=>OnHideAlbum(list[3]));
+		iter.item.TweenAlpha(0f, 0.4f).SetDelay(0.4f).OnComplete(() => OnHideAlbum(list[3]));
 		iter.item.posIdx = 4;
 
 		header.TweenZ(DISTANCE_Z * 0, 1.0f);
 
-		DOVirtual.DelayedCall(0.9f, ()=>MusicMenu.instance.Slide(targetIdx));
+		DOVirtual.DelayedCall(0.9f, () => MusicMenu.instance.Slide(targetIdx));
 	}
 }

@@ -18,7 +18,7 @@ public class MusicMenu : DisplayObject
 
 	public List<AlbumGroup> albumGroups = new List<AlbumGroup>();
 	int direction = -1;
-	int focusIdx;
+	public int focusIdx;
 
 	public void Start()
 	{
@@ -65,7 +65,7 @@ public class MusicMenu : DisplayObject
 	{
 		isMoving = true;
 		Slide(3, 2.0f);
-		DOVirtual.DelayedCall(2f, () => albumGroups[3].Open());
+		
 	}
 
 	public void Slide(int idx, float duration = -1)
@@ -128,11 +128,12 @@ public class MusicMenu : DisplayObject
 
 	public void UpdateMenu(int idx)
 	{
-		if(idx == focusIdx) return;
-		
+		if (idx == focusIdx) return;
+
+		isMoving = true;
 		AlbumGroup group = albumGroups[focusIdx];
 		DisplayTitle(false);
-		DOVirtual.DelayedCall(0.0f, () => group.Close(idx));
+		group.Close(idx);
 	}
 
 	public void DisplayTitle(bool willShow = true)
@@ -146,7 +147,7 @@ public class MusicMenu : DisplayObject
 
 			TextMesh m1 = GameObject.Find("song" + i).GetComponent<TextMesh>();
 			TextMesh m2 = GameObject.Find("singer" + i).GetComponent<TextMesh>();
-			
+
 
 			float a1 = m1.color.a;
 			DOTween.To(() => a1, v => a1 = v, value, 0.5f).SetDelay(delay).SetEase(ease)
@@ -162,23 +163,30 @@ public class MusicMenu : DisplayObject
 				float a3 = m3.color.a;
 				DOTween.To(() => a3, v => a3 = v, value, 0.5f).SetDelay(delay).SetEase(ease)
 				.OnUpdate(() => m3.color = new Color(1, 1, 1, a3));
-
-
 			}
 
 			if (willShow)
 			{
-				
-				m1.text = PlayInfo.list[rnd].musiclist[i].song;
-				m2.text = PlayInfo.list[rnd].musiclist[i].singer;
-				if (i == 0) 
+
+				m1.text = PlayInfo.list[focusIdx%2].musiclist[i].song;
+				m2.text = PlayInfo.list[focusIdx%2].musiclist[i].singer;
+				if (i == 0)
 				{
 					TextMesh m3 = GameObject.Find("album").GetComponent<TextMesh>();
 					m3.text = PlayInfo.list[rnd].musiclist[i].album;
 				}
 			}
-
 		}
+
+		if(willShow)
+		{
+			DOVirtual.DelayedCall(0.8f,() => isMoving = false);
+
+			int id = focusIdx % 5;
+			MusicPlayer.instance.Play(PlayInfo.list[id].musiclist[0].id-1);
+			
+		}
+			
 	}
 
 	void Update()
