@@ -34,4 +34,9 @@ public class MusicPlayer : DisplayObject
 		_audio.Stop();
 	}
 
+	public void SetVolume(float volume)
+	{
+		_audio.volume = volume;
+	}
+
 }

@@ -14,6 +14,10 @@ public class AlbumHeader : DisplayObject
 		{
 			renderers[i].material.SetVector("_PlanePosition", new Vector3(0, 1.42f, 0));
 		}
+
+		string title = PlayInfo.list[(parent as AlbumGroup).idx%5].name;
+		transform.Find("title").gameObject.GetComponent<TextMesh>().text = title;
+		transform.Find("titleShadow").gameObject.GetComponent<TextMesh>().text = title;
 	}
 
 	void OnMouseUp()

@@ -1,73 +1,20 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-// // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-// // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-
-// Shader "Joe/UIAlphaMask"
-// {
-// Properties 
-//      {
-//         _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {} 
-//         _BlendTex ("Blend (RGB)", 2D) = "white" {}
-// 		// _RotationSpeed ("Angle", Range(0,  7.0)) = 0.0
-//      }
-//      SubShader 
-//      {
-//         Tags { "RenderType"="Transparent" "Queue"="Transparent"  }
-//         Lighting Off
-//         LOD 200
-// 		// Blend One OneMinusDstAlpha
-
-  
-//         CGPROGRAM
-// 		// #pragma vertex vert
-//         #pragma surface surf Standard alpha:blend 
-
-// #pragma target 3.0
-  
-//         sampler2D _MainTex;
-//         sampler2D _BlendTex;
-  
-//         struct Input {
-//           float2 uv_MainTex;
-// 		  float2 uv_BlendTex;
-//         };
-  
-		
-
-//         void surf (Input IN, inout SurfaceOutputStandard o) {
-// 			fixed4 c1 = tex2D( _MainTex, IN.uv_MainTex );
-// 			fixed4 c2 = tex2D( _BlendTex, IN.uv_BlendTex );
-
-//           o.Albedo = (c1.rgb * c2.rgb);
-//           o.Alpha = c1.a * c2.r;
-
-// 		//   o.Albedo = c2.rgb;
-//         //   o.Alpha = c2.a;
-//         }
-//         ENDCG
-//      }
-  
-//      Fallback "Transparent/VertexLit"
-// 	 	}
-
-Shader "Unlit/Unlit UV Rotation of multiple textures in fragment"
+﻿Shader "Unlit/Unlit UV Rotation of multiple textures in fragment"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+		_RotationA ("Rotation", Range(0,360)) = 0.0
         _RotatedTexA ("Texture", 2D) = "white" {}
-        _RotationA ("Rotation", Range(0,360)) = 0.0
-        _RotatedTexB ("Texture", 2D) = "white" {}
         _RotationB ("Rotation", Range(0,360)) = 0.0
+        _RotatedTexB ("Texture", 2D) = "white" {}
+        
     }
     SubShader
     {
 		Tags { "RenderType"="Transparent" "Queue"="Transparent"  }
         Lighting Off
         LOD 200
+		Blend SrcAlpha OneMinusSrcAlpha
  
         Pass
         {
@@ -128,24 +75,25 @@ Shader "Unlit/Unlit UV Rotation of multiple textures in fragment"
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.uv2.xy = TRANSFORM_TEX(rotateUV(v.uv, _RotationA), _RotatedTexA);
                 o.uv2.zw = TRANSFORM_TEX(rotateUV(v.uv, _RotationB), _RotatedTexB);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+
+                // UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
            
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv2.xy);
  
                 // sample rotated textures
-                fixed4 colA = tex2D(_RotatedTexA, i.uv2.xy);
+                fixed4 colA = tex2D(_RotatedTexA, i.uv2.zw);
                 fixed4 colB = tex2D(_RotatedTexB, i.uv2.zw);
  
                 // adding the textures together just so you can see them all
                 // col = (col + colA + colB) / 3.0;
 
 				col = col * colA;
-				// col.a = col.a * colA.r;
+				col.a = col.a * colA.r;
  
                 // apply fog
                 // UNITY_APPLY_FOG(i.fogCoord, col);              
@@ -156,30 +104,30 @@ Shader "Unlit/Unlit UV Rotation of multiple textures in fragment"
             ENDCG
 		}
 
-			CGPROGRAM
+			// CGPROGRAM
 
-				#pragma surface surf Standard alpha:blend 
-				#pragma target 3.0
+			// 	#pragma surface surf Standard alpha:blend 
+			// 	#pragma target 3.0
 				
-				sampler2D _MainTex;
-				sampler2D _RotatedTexA;
+			// 	sampler2D _MainTex;
+			// 	sampler2D _RotatedTexA;
 		
-				struct Input {
-					float2 uv_MainTex;
-					float2 uv_RotatedTexA;
-				};
+			// 	struct Input {
+			// 		float2 uv_MainTex;
+			// 		float2 uv2_RotatedTexA;
+			// 	};
 
-				void surf (Input IN, inout SurfaceOutputStandard o) {
-					fixed4 c1 = tex2D( _MainTex, IN.uv_MainTex );
-					fixed4 c2 = tex2D( _RotatedTexA, IN.uv_RotatedTexA );
+			// 	void surf (Input IN, inout SurfaceOutputStandard o) {
+			// 		fixed4 c1 = tex2D( _MainTex, IN.uv_MainTex );
+			// 		fixed4 c2 = tex2D( _RotatedTexA, IN.uv2_RotatedTexA );
 
-					// o.Albedo = (c1.rgb * c2.rgb);
-					// o.Alpha = c1.a * c2.r;
+			// 		// o.Albedo = (c1.rgb * c2.rgb);
+			// 		// o.Alpha = c1.a * c2.r;
 
-					//   o.Albedo = c2.rgb;
-					//   o.Alpha = c2.a;
-				}
-            ENDCG
+			// 		//   o.Albedo = c2.rgb;
+			// 		//   o.Alpha = c2.a;
+			// 	}
+            // ENDCG
         // }
     }
 }

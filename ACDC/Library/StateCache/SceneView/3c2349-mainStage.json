@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":39.21505355834961,"y":-30.592079162597658,"z":-14.810054779052735},"rotation":{"x":0.07323452085256577,"y":0.07323355227708817,"z":-0.005402820650488138,"w":0.9946076273918152},"size":-52.90818405151367,"orthographic":false}
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":960.0,"y":400.0,"z":0.0},"rotation":{"x":-0.031491294503211978,"y":-0.014992118813097477,"z":-0.00047238561091944575,"w":0.999391496181488},"size":516.1962890625,"orthographic":false}
->>>>>>> refs/remotes/origin/develop
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":48.63862991333008,"y":-38.48446273803711,"z":55.07329559326172},"rotation":{"x":-0.031491294503211978,"y":-0.014992118813097477,"z":-0.00047238561091944575,"w":0.999391496181488},"size":5.346545219421387,"orthographic":false}
->>>>>>> f0348efd561a51e248ee79861800cfe72c5b6e99
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":960.0,"y":280.0,"z":0.0},"rotation":{"x":0.007498384919017553,"y":-0.020998291671276094,"z":-0.00015751703176647425,"w":-0.9997514486312866},"size":858.0,"orthographic":false}
